@@ -40,7 +40,7 @@ function App() {
         </div>
         <div className="bg-blue-400 w-2/3 m-2 pt-16 flex justify-center items-center">
           {loading && <div className="loading">Loading...</div>}
-          {!loading && (
+          {!loading && data && (
             <img src={data ? data.Poster : ""} alt="poster" className="w-48" />
           )}
         </div>
