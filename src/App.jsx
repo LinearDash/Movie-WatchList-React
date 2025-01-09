@@ -4,17 +4,19 @@ import useApi from "./hooks/useApi";
 
 function App() {
   const [search, setSearch] = useState("");
+  const [input, setinput] = useState("");
   const { data, loading, error } = useApi(search);
 
   const handelInput = (e) => {
-    console.log(search);
-    setSearch(e.target.value);
+    setinput(e.target.value);
   };
 
   const handleSubmit = () => {
-    if (!search.trim()) {
+    if (!input.trim()) {
       alert("Please enter a movie or series name.");
     }
+    setSearch(input);
+    console.log(data);
   };
 
   return (
@@ -26,7 +28,7 @@ function App() {
             className="w-1/3 mt-3 pl-2 h-7 "
             type="text"
             placeholder="Movies and Series"
-            value={search}
+            value={input}
             onChange={handelInput}
           />
           <button

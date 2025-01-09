@@ -1,23 +1,47 @@
+import { useState, useEffect } from "react";
 
-const useApi = async (search)=> {
-  try {
-    const key = import.meta.env.VITE_API_KEY;
-    console.log("API Key:", key);
+const useApi = (search) => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-
-    const response = await fetch(
-      `https://www.omdbapi.com/?t=${search}&apikey=${key}`
-    );
-    if(!response.ok){
-      throw new Error(`HTTP error! status: ${response.status}`);
+  useEffect(() => {
+    if (!search.trim()) {
+      setData(null);
+      setError(null);
+      return;
     }
-  
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    console.error("Error in useApi:", error);
-    return { error: error.message };
-  }
-}
+
+    const fetchData = async () => {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const key = import.meta.env.VITE_API_KEY;
+        const response = await fetch(
+          `https://www.omdbapi.com/?t=${search}&apikey=${key}`
+        );
+        const result = await response.json();
+
+        if (result.Error) {
+          setError(result.Error); 
+          setData(null);
+        } else {
+          setData(result);
+        }
+      } catch (err) {
+        setError(`An unexpected error occurred: ${err.message}`); 
+        console.error("Fetch Error:", err); 
+        setData(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [search]);
+
+  return { data, loading, error };
+};
 
 export default useApi;
