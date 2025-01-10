@@ -1,3 +1,5 @@
-const addToWatchlist = () => {};
+const addToWatchlist = () => {
+  return;
+};
 
 export default addToWatchlist;
