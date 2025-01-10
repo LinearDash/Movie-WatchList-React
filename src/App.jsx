@@ -16,7 +16,7 @@ function App() {
       alert("Please enter a movie or series name.");
     }
     setSearch(input);
-    console.log(data);
+    console.log(data.results);
   };
 
   return (
@@ -40,9 +40,16 @@ function App() {
         </div>
         <div className="bg-blue-400 w-2/3 m-2 pt-16 flex justify-center items-center">
           {loading && <div className="loading">Loading...</div>}
-          {!loading && data && (
-            <img src={data ? data.Poster : ""} alt="poster" className="w-48" />
-          )}
+          {!loading &&
+            data &&
+            data.results.map((movie) => (
+              <img
+                key={movie.id}
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                alt="poster"
+                className="w-48 flex"
+              />
+            ))}
         </div>
         <div className="bg-orange-300 m-2 w-1/3 pt-16">Current watchlist</div>
       </div>

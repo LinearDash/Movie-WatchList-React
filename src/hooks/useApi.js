@@ -19,7 +19,7 @@ const useApi = (search) => {
       try {
         const key = import.meta.env.VITE_API_KEY;
         const response = await fetch(
-          `https://www.omdbapi.com/?t=${search}&apikey=${key}`
+          `https://api.themoviedb.org/3/search/movie?query=${search}&api_key=${key}`
         );
         const result = await response.json();
 
