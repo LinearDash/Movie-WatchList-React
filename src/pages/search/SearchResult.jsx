@@ -21,7 +21,7 @@ function SearchResult() {
       alert("Please enter a movie or series name.");
     }
     setSearch(input);
-    // console.log(data.results);
+    console.log(data.results);
   };
 
   return (
