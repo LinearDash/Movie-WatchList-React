@@ -1,14 +1,10 @@
-import { Link } from "react-router-dom";
+import NavBar from "../../components/common/NavBar";
 
 function HomePage() {
   return (
     <>
-      <div className="bg-primary">
-        This is HomePage
-        <p>Still working on Homepage /:</p>
-        <Link to="./search" className="text-blue-300 font-bold">
-          click me
-        </Link>
+      <div>
+        <NavBar />
       </div>
     </>
   );
