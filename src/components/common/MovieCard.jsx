@@ -4,29 +4,6 @@ const MovieCard = (data) => {
     console.log(`${movieData.title} has been clicked`);
   };
   return (
-    // <div className="card bg-base-100  shadow-xl" onClick={handleClick}>
-    //   <figure>
-    //     <img
-    //       src={
-    //         movieData.poster_path
-    //           ? `https://image.tmdb.org/t/p/w500${movieData.poster_path}`
-    //           : "/genricPoster.jpg"
-    //       }
-    //       alt="poster"
-    //       className="w-48 h-72 object-cover drop-shadow-lg rounded-2xl"
-    //     />
-    //   </figure>
-    //   <div className="card-body">
-    //     <h2 className="card-title">
-    //       {movieData.title}
-    //       <div className="badge badge-secondary">NEW</div>
-    //     </h2>
-    //     <p>{movieData.overview}</p>
-    //     <div className="card-actions justify-end">
-    //
-    //     </div>
-    //   </div>
-    // </div>
     <div
       className="p-1 m-2  rounded-xl bg-gradient-to-r from-indigo-500  to-gray-500 "
       onClick={handleClick}

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useApi = (search) => {
+const useApi = (search,type) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
