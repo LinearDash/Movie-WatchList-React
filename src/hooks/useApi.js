@@ -1,9 +1,26 @@
 import { useState, useEffect } from "react";
 
-const useApi = (search,type) => {
+const useApi = ({search,type}) => {
+
+  const key = import.meta.env.VITE_API_KEY;
+
+  const getApiEndpoint= ()=>{
+    switch(type){
+      case "trending":
+       return `https://api.themoviedb.org/3/movie/popular?&api_key=${key}`
+      case "search":
+        return `https://api.themoviedb.org/3/search/movie?query=${search}&api_key=${key}`
+
+    }
+  }
+
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [endpoint , setEndpoint] = useState('')
+
+  setEndpoint(getApiEndpoint());
+
 
   useEffect(() => {
     if (!search.trim()) {
@@ -17,10 +34,7 @@ const useApi = (search,type) => {
       setError(null);
 
       try {
-        const key = import.meta.env.VITE_API_KEY;
-        const response = await fetch(
-          `https://api.themoviedb.org/3/search/movie?query=${search}&api_key=${key}`
-        );
+        const response = await fetch(endpoint);
         const result = await response.json();
 
         if (result.Error) {
